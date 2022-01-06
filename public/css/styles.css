@@ -1,0 +1,88 @@
+body{
+  background-color:#f7f1f0;
+  text-align:center;
+  color: #6b6a6a;
+}
+
+h4{
+  font-weight:normal;
+  padding-top:20px;
+}
+
+a:hover{
+  text-decoration:none;
+  color:#b5b3b3;
+}
+
+/*navbar*/
+.navbar{
+  background-color:#e0b6ab;
+}
+
+.logo{
+  display:flex;
+}
+
+/*container*/
+.box{
+  padding:6% 8%;
+  width:50%;
+  margin:0 auto;
+}
+
+/* forms */
+.form-control:focus {
+  border-color: #b0b0b0;
+  box-shadow: 0 0 5px #b0b0b0;
+}
+
+/*username/password pages */
+.signin{
+  margin-top:30px;
+}
+
+/* all-list page*/
+.list-group-item{
+  font-size:1.25rem;
+}
+
+input[type="checkbox"] {
+  margin-top:11px;
+}
+
+/* list items page */
+.back-link{
+  color:#6b6a6a;
+}
+
+.item-label{
+ margin-left:10px;
+}
+
+.new-input{
+  box-shadow:none;
+  font-size:1.1rem;
+}
+
+.new-input:focus{
+  box-shadow:none;
+  z-index:1 !important;
+}
+
+.new-item-li{
+  padding:0;
+}
+
+.add-button{
+  border-top-right-radius:0 !important;
+  border:none;
+  border-left:1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+/* footer */
+.footer{
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}

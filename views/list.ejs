@@ -1,0 +1,51 @@
+<%- include("partials/header") -%>
+
+<div class="box">
+  <h1><%=listName%></h1>
+  <h4></h4>
+  <br>
+
+
+
+  <ul class="list-group">
+    <div class="list-group-item flex-column text-left">
+      <div class="form-check">
+      <% for (const item of items) { %>
+        <% const itemIndex=items.indexOf(item)%>
+
+        <form action="/delete-item" method="post">
+
+
+
+            <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%=itemIndex%>" id="item-<%=itemIndex%>">
+            <label for="item-<%=itemIndex%>" class="mb-1 item-label"><%=  item.itemName  %></label>
+
+
+          <input type="hidden" name="listName" value="<%=listName%>"></input>
+          <input type="hidden" name="itemName" value="<%=item.itemName%>"></input>
+          <input type="hidden" name="itemId" value="<%=item._id%>"></input>
+        </form>
+      <% } %>
+      </div>
+    </div>
+
+
+    <li class="list-group-item new-item-li">
+      <form action="/add-item" method="post">
+        <div class="input-group">
+          <input type="text" class="form-control new-input border-0 text-center" placeholder="type new item" name="newItem">
+          <div class="input-group-append">
+            <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
+          </div>
+        </div>
+        <input type="hidden" name="listName" value="<%=listName%>"></input>
+      </form>
+    </li>
+</ul>
+
+  <br>
+  <p class="text-muted">Click <u><a class="back-link" href="/user/<%=username%>/lists">here</a></u> to go back to all lists</p>
+
+</div>
+
+<%- include("partials/footer") -%>

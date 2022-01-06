@@ -1,0 +1,34 @@
+<%- include("partials/header") -%>
+
+
+
+
+  <div class="box">
+
+    <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Eo_circle_grey_checkmark.svg" alt="" width="80" height="80">
+
+    <!-- heading -->
+    <h1>Make some Lists</h1>
+
+    <!-- username form -->
+    <form class="signin" action="/username" method="post">
+      <div class="input-group input-group-lg mb-3">
+        <!-- username input -->
+        <input type="text" class="form-control" placeholder="Username" value="<%=placeholder%>" name="username" autofocus>
+
+        <!-- submit button -->
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Next</button>
+        </div>
+
+      </div>
+      <p><%=errorMessage%></p><br>
+      <p>No Account? <u><a class="text-muted" href="/create-user">Create one!</a></u></p>
+
+
+    </form>
+
+  </div>
+
+
+<%- include("partials/footer") -%>
