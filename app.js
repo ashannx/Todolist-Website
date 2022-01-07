@@ -96,7 +96,7 @@ async function main() {
         })
       } else {
         res.render("username.ejs", {
-          errorMessage: "This app is functional but keep in mind it is a work in progress. Passwords and lists are not encrypted, please avoid using personal information",
+          errorMessage: "",
           placeholder: ""
         })
       }
