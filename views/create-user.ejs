@@ -1,35 +1,34 @@
 <%- include("partials/header") -%>
-<div class="box">
-  <h1>Create New User</h1> <!--put in their username -->
-  <h4>Pick a username and password</h4>
+<div class="d-flex  align-items-center flex-column">
 
-  <div class="list-group" >
-    <form class="signin text-center" action="/create-user" method="post">
-      <!-- <label for="new-username">Username:</label> -->
-      <div class="form-group">
-        <input type="text" class="form-control text-center" placeholder="Username" name="newUsername" autofocus>
-      </div>
+  <div class="col-md-3 mt-5 col-xs-12">
+    <h1>Create New User</h1>
+    <!--put in their username -->
+    <h4>Pick a username and password</h4>
 
-      <div class="form-group">
-        <input type="password" class="form-control text-center" placeholder="Password" name="newPassword">
-
-      </div>
-
-      <div class="form-group">
-        <input type="password" class="form-control text-center" placeholder="Re-enter Password" name="confirmPassword">
+    <div class="list-group">
+      <form class="signin text-center" action="/create-user" method="post">
+        <div class="input-group input-group-lg mb-0">
+          <input type="text" class="form-control text-center top" placeholder="Username" name="username" autofocus>
+        </div>
+        <div class="input-group input-group-lg mb-0">
+          <input type="password" class="form-control text-center middle" placeholder="Password" name="password">
+        </div>
+        <div class="input-group input-group-lg mb-0">
+          <input type="password" class="form-control text-center bottom" placeholder="Re-enter Password" name="confirmPassword">
+        </div>
         <small class="form-text text-muted"><b>𝑖</b> password must be at least 8 characters</small>
-      </div>
-
-      <button class="btn btn-outline-secondary btn-block" type="submit">Submit</button>
+        <div class="d-grid mt-3">
+          <button class="btn btn-outline-secondary btn-block" type="submit">Submit</button>
+        </div>
       </form>
-      </div>
-      <br><br><p><%=errorMessage%></p><br>
+    </div>
+    <p><%=errorMessage%></p><br>
 
 
 
   </div>
-
-
+</div>
 
 
 

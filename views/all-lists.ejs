@@ -1,34 +1,41 @@
 <%- include("partials/header") -%>
 
-<div class="box">
-  <h1>Choose a List!</h1> <!--put in their username -->
-  <h4>Pick one from the list below</h4>
-  <br>
+<div class="d-flex  align-items-center flex-column">
 
-  <div class="list-group">
-    <% for (const list of userLists) { %>
-      <% const numItems = String(list.items.length) %>
-        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/user/<%=  userLowercase  %>/lists/<%=  list.link  %>">
-          <%=  list.displayName  %><span class="badge badge-secondary badge-pill"><%=numItems%></span>
-        </a>
-    <% } %>
+  <div class="col-md-4 mt-5 col-xs-12">
+    <h1>Choose a List!</h1> <!--put in their username -->
+    <h4>Pick one from the list below</h4>
+    <br>
 
-    <div class="list-group-item new-item-li">
-      <form action="/add-list" method="post">
-        <div class="input-group">
-          <input type="text" class="form-control new-input border-0 text-center" placeholder="create new list" name="newList">
-          <div class="input-group-append">
+    <div class="list-group">
+      <% for (let i = 0; i < userLists.length; i++) { %>
+        <div class="d-flex">
+          <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/lists/<%=  userLists[i].link  %>">
+            <%=  userLists[i].displayName  %>
+            <span class="badge bg-secondary rounded-pill"><%= String(userLists[i].items.length) %></span>
+          </a>
+
+          <form method="post" action="/lists/delete/{{id}}?_method=PATCH" class="delete-list">
+            <input type="hidden" name="_METHOD" value="PATCH"/>
+            <input type="hidden" name="listArrayId" value="<%=  i  %>">
+            <button class="btn btn-lg btn-outline-secondary minus-button" type="submit">-</button>
+          </form>
+        </div>
+      <% } %>
+
+      <div class="list-group-item new-item-li">
+        <form action="/lists" method="post">
+
+          <div class="d-flex">
+            <input type="text" class="form-control new-input text-center" placeholder="type new title here, click + to add a new list --->" name="newListTitle">
             <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
           </div>
-        </div>
 
-      </form>
+        </form>
+
+      </div>
+      <br>
     </div>
   </div>
-
-  <br>
-  <p>We are working on adding a way to delete lists, but <a class="text-muted" href="mailto:ashley.kuipers@hotmail.com"><u>let us know</u></a> if you need one deleted sooner</p>
-
-</div>
 
 <%- include("partials/footer") -%>
