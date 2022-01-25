@@ -8,21 +8,24 @@
     <br>
 
     <div class="list-group">
+      <div class=" mb-3">
       <% for (let i = 0; i < userLists.length; i++) { %>
         <div class="d-flex">
-          <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/lists/<%=  userLists[i].link  %>">
-            <%=  userLists[i].displayName  %>
+          <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/lists/<%= userLists[i].link %>">
+            <%= userLists[i].displayName %>
             <span class="badge bg-secondary rounded-pill"><%= String(userLists[i].items.length) %></span>
           </a>
 
-          <form method="post" action="/lists/delete/{{id}}?_method=PATCH" class="delete-list">
-            <input type="hidden" name="_METHOD" value="PATCH"/>
-            <input type="hidden" name="listArrayId" value="<%=  i  %>">
+          <!-- minus button -->
+          <form action="/lists/{{idea.id}}?_method=PATCH" method="post" class="delete-list">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="listArrayId" value="<%= i %>">
             <button class="btn btn-lg btn-outline-secondary minus-button" type="submit">-</button>
           </form>
+
         </div>
       <% } %>
-
+      </div>
       <div class="list-group-item new-item-li">
         <form action="/lists" method="post">
 

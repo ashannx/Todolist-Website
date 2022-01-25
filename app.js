@@ -8,6 +8,7 @@ const ObjectId = require('bson-objectid')
 const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
+const methodOverride = require('method-override');
 
 // custom modules
 const defaultData = require('./defaultData.js')
@@ -25,6 +26,9 @@ app.use(bodyParser.urlencoded({
 
 // helps it use our css
 app.use(express.static("public"))
+
+// to use other http methods with forms
+app.use(methodOverride('_method'));
 
 // for sessions
 app.use(session({
@@ -74,10 +78,14 @@ async function main() {
   // home page
   app.route("/")
     .get((req,res)=>{
-      //show a home page with a gif of the lists or something?
-      //have a button on this page that brings you to the login?
+      //show a home page with a gif of the lists or something? <-- make this an about page
+
+      if(req.isAuthenticated()){
+        req.logout()
+      }
       res.render("username.ejs",{
-        errorMessage:""
+        errorMessage:"",
+        button:""
       })
     })
   app.route("/login")
@@ -131,7 +139,8 @@ async function main() {
       if(req.isAuthenticated()){
         User.findOne({_id:req.user._id}, (err, user)=>{
           res.render("all-lists.ejs", {
-            userLists:user.lists
+            userLists:user.lists,
+            button:"Sign Out"
           })
         })
       } else {
@@ -160,7 +169,7 @@ async function main() {
       }
     })
   // delete a list
-  app.post("/lists/:list/delete", (req,res)=>{
+  app.patch("/lists/:id", (req,res)=>{
     if(req.isAuthenticated()){
       User.findOne({_id:req.user._id}, (err,user)=>{
         user.lists.splice(req.body.listArrayId,1)
@@ -172,7 +181,7 @@ async function main() {
     }
   })
 
-  // specific list page
+  // individual list page
   app.route("/lists/:list")
     .get((req,res)=>{
       if(req.isAuthenticated()){
@@ -180,11 +189,9 @@ async function main() {
           for (const list of user.lists){
             if(req.params.list === list.link){
               res.render("list.ejs", {
-                list:list
+                list:list,
+                button:"Sign Out"
               })
-              break
-            } else {
-              res.redirect("/lists")
             }
           }
         })
@@ -192,45 +199,30 @@ async function main() {
         res.redirect("/")
       }
     })
-    // delete an item
-    app.patch("/lists/items/delete/:patch", (req,res)=>{
+    .post((req,res)=>{
       if(req.isAuthenticated()){
         User.findOne({_id:req.user._id}, (err,user)=>{
           const currentList = user.lists.id(req.body.listDBId)
-          currentList.items.splice(req.body.itemArrayId,1)
+          currentList.items.push({itemName:req.body.newItem})
           user.save()
-          res.redirect("/lists/" + currentList.link)
         })
+        res.redirect("/lists/" + req.params.list)
       } else {
         res.redirect("/")
       }
     })
-
-
-
-  //ADD ITEM TO LIST
-  // app.post("/add-item", function(req, res) {
-  //   const newItem = req.body.newItem
-  //   const newItemList = req.body.listName
-  //
-  //   User.findById(currentUserId, function(err, user) {
-  //     var doc2 = user.lists.id(currentListID);
-  //     doc2.items.push({
-  //       itemName: newItem
-  //     })
-  //     user.save()
-  //   })
-  //   // console.log("New List Item: " + newItem)
-  //   currentListItems.push({
-  //     itemName: newItem
-  //   })
-  //   res.redirect("/user/" + userInfo.name + "/lists/" + newItemList)
-  // })
-
-
-
-  app.get("/about", function(req, res) {
-    res.render("about.ejs")
+  // delete an item
+  app.patch("/lists/:list/:id", (req,res)=>{
+    if(req.isAuthenticated()){
+      User.findOne({_id:req.user._id}, (err,user)=>{
+        const currentList = user.lists.id(req.body.listDBId)
+        currentList.items.splice(req.params.itemArrayId,1)
+        user.save()
+      })
+      res.redirect("/lists/" + req.params.list)
+    } else {
+      res.redirect("/")
+    }
   })
 
 

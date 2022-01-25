@@ -3,25 +3,21 @@
 <div class="d-flex  align-items-center flex-column">
 
   <div class="col-md-4 mt-5 col-xs-12">
-  <h1><%=list.displayName%></h1>
+  <h1><%= list.displayName %></h1>
   <h4></h4>
   <br>
 
 
 
   <ul class="list-group">
-    <li class="list-group-item text-start">
+    <li class="list-group-item text-start mb-3 pb-1">
 
       <% for (let i = 0; i < list.items.length; i++) { %>
-
-        <form method="post" action="/lists/items/delete/{{id}}?_method=PATCH" class="delete-list">
-          <input type="hidden" name="_METHOD" value="PATCH"/>
-
+        <form action="/lists/<%= list.link %>/{{idea.id}}?_method=PATCH" method="post">
+          <input type="hidden" name="_method" value="PATCH">
           <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= i %>" id="item-<%= i %>">
           <label for="item-<%= i %>" class="mb-1 item-label"><%=  list.items[i].itemName  %></label>
-
           <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
-          <input type="hidden" name="itemArrayId" value="<%= i %>"></input>
         </form>
       <% } %>
 
@@ -29,14 +25,14 @@
 
 
     <li class="list-group-item new-item-li">
-      <form action="/add-item" method="post">
+      <form action="/lists/<%= list.link %>" method="post">
         <div class="input-group">
           <input type="text" class="form-control new-input border-0 text-center" placeholder="type new item" name="newItem">
           <div class="input-group-append">
             <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
           </div>
         </div>
-
+        <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
       </form>
     </li>
 </ul>
