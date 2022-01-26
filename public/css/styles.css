@@ -1,124 +1,151 @@
-body{
-  background-color:#f7f1f0;
-  text-align:center;
-  color: #6b6a6a;
+:root{
+  --light:#f7f1f0; /* background */
+  --lightGrey:#b0b0b0; /* link hover, form borders & shadows */
+  --grey:#6b6a6a; /* form placeholder text */
+  --pink:#e0b6ab; /* navbar */
+  --darkPink:#947770; /*breadcrumbs and links on light background*/
 }
 
-h4{
+body{
+  background-color:var(--light);
+  text-align:center;
+  color: var(--grey); /*changes color on form text */
+}
+
+
+h4{ /* subheading on all-lists and list pages */
   font-weight:normal;
   padding-top:20px;
 }
 
+a{
+  text-decoration:none;
+  color:var(--grey);
+  transition:0.3s;
+}
+
 a:hover{
   text-decoration:none;
-  color:#b5b3b3;
+  color:var(--lightGrey);
+  cursor:pointer;
+}
+
+/* container */
+.cont{
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumbs, .breadcrumbs a{
+  font-size:0.95rem;
+  color:var(--darkPink);
+}
+
+.breadcrumbs i{
+  color:var(--pink);
+}
+
+.breadcrumbs a:hover{
+  color:var(--lightGrey)
 }
 
 /*navbar*/
 .navbar{
-  background-color:#e0b6ab;
+  background-color:var(--pink);
 }
 
-.logo{
-  display:flex;
+.logo, .logout{
+  color:var(--light);
 }
 
-/*container*/
-.box{
-  padding:6% 8%;
-  width:50%;
-  margin:0 auto;
+.logout{
+  font-size:1.15rem;
+  font-weight:500;
+  padding-top:5px;
+}
+
+.logout:hover{
+  color:var(--grey)
+}
+
+.logo:hover{
+  color:var(--light);
 }
 
 /* forms */
-.form-control:focus {
-  border-color: #b0b0b0;
-  box-shadow: 0 0 5px #b0b0b0;
+.form-control{
+  border-color:var(--lightGrey);
 }
 
-.signin{
-  margin-top:30px;
+.form-control:focus{
+  box-shadow: 0 0 5px var(--lightGrey) !important;
+  border-color:var(--lightGrey);
 }
 
-.signin .top{
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.form-control::placeholder{
+  opacity:0.7;
 }
 
-.signin .middle{
-  border-radius:0;
+.top{
+  border-radius: 0.25rem 0.25rem 0 0 !important;
 }
 
-.signin .bottom{
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.bottom{
+  border-radius: 0 0 0.25rem 0.25rem !important;
 }
 
-
-
-
-
-/* all-list page*/
-/*
-
- */
-
-/* list items page */
-/* .back-link{
-  color:#6b6a6a;
+/* all lists  & lists pages*/
+.add-input{
+  border-radius:0.25rem 0 0 0.25rem;
+  font-size:1.25rem
 }
 
-.item-label{
- margin-left:10px;
+.add-button {
+  border-color:var(--lightGrey);
+  border-left:0;
+  background:white;
+  width:55px;
+  border-radius:0 0.25rem 0.25rem 0;
+  color:var(--grey)
 }
 
-
-
- */
-
-.new-input{
-  border-radius:0;
-  border:0;
-  border-right:1px solid rgba(0, 0, 0, 0.125);
-}
-
-.list-group-item{
-  font-size:1.25rem;
-  border-bottom:0
-}
-
-.new-item-li{
-  padding:0;
-}
-
-.add-button, .minus-button{
-  border-radius:0;
-  border:0;
-  height:100%;
-  width:50px;
-}
-
-.add-button:focus, .minus-button:focus, .add-button:active, .minus-button:active{
+.add-button:focus, .add-button:active{
   box-shadow:none;
 }
 
-.minus-button{
-  background-color:#fff;
-  border-top:1px solid rgba(0, 0, 0, 0.125);
-  border-right:1px solid rgba(0, 0, 0, 0.125);
-
+/* all lists page */
+.list-group-item{
+  font-size:1.25rem;
+  border-color:var(--lightGrey);
 }
 
-.add-button{
-  margin-right:1px; /* TODO: need to fix this, the buttons dont line up */
+/* list page */
+.delete-list{
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size:0.95rem;
+  color:var(--darkPink);
+  transition:0.3s;
 }
 
+.delete-list:hover{
+  color:var(--lightGrey);
+}
 
 input[type="checkbox"] {
-  margin-right:10px;
+  margin:3px 20px 0 0;
+  width:1rem;
+  height:1rem;
+
 }
 
-/* footer */
-.footer{
-
+.items-list{
+  background:white;
+  border-radius:0.25rem;
+  border:1px solid var(--lightGrey);
+  padding:1rem 1.8rem;
+  font-size:1.25rem;
 }

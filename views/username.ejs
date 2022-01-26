@@ -1,43 +1,29 @@
 <%- include("partials/header") -%>
 
+<div class="col-md-3 mt-5 col-xs-12">
 
+  <i class="fas fa-check-circle fa-6x mb-3"></i>
 
+  <h1>Make some Lists</h1>
 
-  <div class="d-flex  align-items-center flex-column">
+  <!-- login form -->
+  <form class="mt-4" action="/login" method="post">
 
-    <div class="col-md-3 mt-5 col-xs-12">
-      <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Eo_circle_grey_checkmark.svg" alt="" width="80" height="80">
-
-      <!-- heading -->
-      <h1>Make some Lists</h1>
-
-      <!-- username form -->
-      <form class="signin" action="/login" method="post">
-
-        <div class="input-group input-group-lg mb-0">
-          <input type="text" class="form-control top" placeholder="Username" name="username" autofocus>
-        </div>
-
-        <div class="input-group input-group-lg mb-3">
-          <input type="password" class="form-control bottom" placeholder="Password" name="password">
-        </div>
-
-        <div class="d-grid">
-          <button class="btn btn-outline-secondary" type="submit">Submit</button>
-        </div>
-
-        <p><%=errorMessage%></p><br>
-        <p>No Account? <u><a class="text-muted" href="/create-user">Create one!</a></u></p>
-
-
-      </form>
-
+    <div class="input-group input-group-lg mb-0">
+      <input type="text" class="form-control top border-bottom-0" placeholder="Username" name="username" autofocus>
+    </div>
+    <div class="input-group input-group-lg mb-3">
+      <input type="password" class="form-control bottom" placeholder="Password" name="password">
+    </div>
+    <div class="d-grid">
+      <button class="btn btn-outline-secondary" type="submit">Submit</button>
     </div>
 
+  </form>
 
+  <p><%=errorMessage%></p><br>
+  <p>No Account? <u><a class="text-muted" href="/create-user">Create one!</a></u></p>
 
-
-
-
+</div>
 
 <%- include("partials/footer") -%>

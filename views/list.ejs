@@ -1,44 +1,57 @@
 <%- include("partials/header") -%>
+<div class="col-md-4 mt-3 col-xs-12">
+  <div class="text-start w-100 mb-4 breadcrumbs">
+    <!-- <a href="/" class="text-start"><u>Home</u></a>
+    &nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;  -->
+    <a href="/lists" class="text-start"><u>Lists</u></a>
+    &nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;
+    List
+  </div>
 
-<div class="d-flex  align-items-center flex-column">
-
-  <div class="col-md-4 mt-5 col-xs-12">
   <h1><%= list.displayName %></h1>
-  <h4></h4>
   <br>
 
+  <div class="text-start mb-3 items-list">
 
+    <% for (let i = 0; i < list.items.length; i++) { %>
 
-  <ul class="list-group">
-    <li class="list-group-item text-start mb-3 pb-1">
-
-      <% for (let i = 0; i < list.items.length; i++) { %>
         <form action="/lists/<%= list.link %>/{{idea.id}}?_method=PATCH" method="post">
           <input type="hidden" name="_method" value="PATCH">
-          <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= i %>" id="item-<%= i %>">
-          <label for="item-<%= i %>" class="mb-1 item-label"><%=  list.items[i].itemName  %></label>
           <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
-        </form>
-      <% } %>
 
-    </li>
-
-
-    <li class="list-group-item new-item-li">
-      <form action="/lists/<%= list.link %>" method="post">
-        <div class="input-group">
-          <input type="text" class="form-control new-input border-0 text-center" placeholder="type new item" name="newItem">
-          <div class="input-group-append">
-            <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
+          <div class="d-flex align-items-center mb-2">
+            <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= i %>" id="item-<%= i %>">
+            <label for="item-<%= i %>" class="item-label"><%=  list.items[i].itemName  %></label>
           </div>
-        </div>
-        <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
-      </form>
-    </li>
-</ul>
+
+        </form>
+
+
+    <% } %>
+
+  </div>
+
+
+  <form action="/lists/<%= list.link %>" method="post">
+    <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
+    <div class="d-flex">
+      <input type="text" class="form-control add-input text-center" placeholder="type new item" name="newItem">
+      <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
+    </div>
+  </form>
+
 
   <br>
-  <p class="text-muted">Click <u><a class="back-link" href="/lists">here</a></u> to go back to all lists</p>
+
+
+
+  <!-- delete list -->
+  <form action="/lists/{{idea.id}}?_method=PATCH" method="post" class="delete-list mt-4 mb-3">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="listDBId" value="<%= list._id %>"> <!-- need to refer to this list somehow -->
+    <button class="delete-list" type="submit">Delete this List</button>
+  </form>
+
 
 </div>
 

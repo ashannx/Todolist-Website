@@ -22,14 +22,22 @@
 
 </head>
 <body>
-  <div class="navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 box-shadow">
-    <div class="container">
-      <a href="/" class="logo">
-        <img class="mr-3" src="/images/checkmark.svg" alt="" width="30" height="30">
-        <h5 class="my-0 mr-md-auto font-weight-normal text-light">To Do Lists</h5>
-      </a>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-light" href="/"><%= button %></a>
-      </nav>
-  </div>
-</div>
+  <div class="d-flex vh-100 flex-column">
+
+
+    <div class="navbar">
+      <div class="container d-flex py-1">
+        <div class="">
+          <a href="/" class="d-flex flex-row align-items-center logo">
+            <i class="fas fa-check-circle fa-2x me-3"></i>
+            <h5 class="my-0">To Do Lists</h5>
+          </a>
+        </div>
+        <div class="ms-auto">
+          <a class="logout" ref="/logout">
+            <%= button %>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center flex-column"> <!-- ends in footer -->

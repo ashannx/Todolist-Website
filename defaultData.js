@@ -20,7 +20,7 @@ const defaultList2 = {
   items: defaultItems
 }
 const defaultList3 = {
-  displayName: "Click - to delete -->",
+  displayName: "Add a new list below",
   link: "list-3",
   items: defaultItems
 }

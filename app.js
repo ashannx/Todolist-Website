@@ -80,13 +80,14 @@ async function main() {
     .get((req,res)=>{
       //show a home page with a gif of the lists or something? <-- make this an about page
 
-      if(req.isAuthenticated()){
-        req.logout()
+      if(req.isAuthenticated()){ //make this into it's own route, you don't want logout when they hit logo
+        res.redirect("/lists")
+      } else {
+        res.render("username.ejs",{
+          errorMessage:"",
+          button:""
+        })
       }
-      res.render("username.ejs",{
-        errorMessage:"",
-        button:""
-      })
     })
   app.route("/login")
     .post((req,res)=>{
@@ -110,7 +111,8 @@ async function main() {
   app.route("/create-user")
     .get((req,res)=>{
       res.render("create-user.ejs",{
-        errorMessage:""
+        errorMessage:"",
+        button:""
       })
     })
     .post((req,res) =>{
@@ -172,7 +174,7 @@ async function main() {
   app.patch("/lists/:id", (req,res)=>{
     if(req.isAuthenticated()){
       User.findOne({_id:req.user._id}, (err,user)=>{
-        user.lists.splice(req.body.listArrayId,1)
+        user.lists.pull(req.body.listDBId)
         user.save()
       })
       res.redirect("/lists")
@@ -225,6 +227,10 @@ async function main() {
     }
   })
 
+  app.get("/logout", (req,res)=>{
+    req.logout()
+    res.redirect("/")
+  })
 
 } // end of main
 

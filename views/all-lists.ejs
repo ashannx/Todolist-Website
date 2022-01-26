@@ -1,44 +1,35 @@
 <%- include("partials/header") -%>
-
-<div class="d-flex  align-items-center flex-column">
-
-  <div class="col-md-4 mt-5 col-xs-12">
-    <h1>Choose a List!</h1> <!--put in their username -->
-    <h4>Pick one from the list below</h4>
-    <br>
-
-    <div class="list-group">
-      <div class=" mb-3">
-      <% for (let i = 0; i < userLists.length; i++) { %>
-        <div class="d-flex">
-          <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/lists/<%= userLists[i].link %>">
-            <%= userLists[i].displayName %>
-            <span class="badge bg-secondary rounded-pill"><%= String(userLists[i].items.length) %></span>
-          </a>
-
-          <!-- minus button -->
-          <form action="/lists/{{idea.id}}?_method=PATCH" method="post" class="delete-list">
-            <input type="hidden" name="_method" value="PATCH">
-            <input type="hidden" name="listArrayId" value="<%= i %>">
-            <button class="btn btn-lg btn-outline-secondary minus-button" type="submit">-</button>
-          </form>
-
-        </div>
-      <% } %>
-      </div>
-      <div class="list-group-item new-item-li">
-        <form action="/lists" method="post">
-
-          <div class="d-flex">
-            <input type="text" class="form-control new-input text-center" placeholder="type new title here, click + to add a new list --->" name="newListTitle">
-            <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
-          </div>
-
-        </form>
-
-      </div>
-      <br>
-    </div>
+<div class="col-md-4 mt-3 col-xs-12">
+  <div class="text-start w-100 mb-4 breadcrumbs">
+    <a href="/" class="text-start"><u>Home</u></a>
+    &nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;
+    Lists
   </div>
 
+  <h1>Choose a List!</h1>
+  <br>
+
+
+  <div class="list-group mb-3">
+  <% for (let i = 0; i < userLists.length; i++) { %>
+    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="/lists/<%= userLists[i].link %>">
+      <%= userLists[i].displayName %>
+      <span class="badge bg-secondary rounded-pill"><%= String(userLists[i].items.length) %></span>
+    </a>
+  <% } %>
+  </div>
+
+
+
+  <form action="/lists" method="post">
+    <div class="d-flex">
+      <input type="text" class="form-control add-input text-center" placeholder="type new title here, click + to add a new list --->" name="newListTitle">
+      <button class="btn btn-lg btn-outline-secondary add-button" type="submit">+</button>
+    </div>
+  </form>
+
+  <br>
+
+
+</div>
 <%- include("partials/footer") -%>
