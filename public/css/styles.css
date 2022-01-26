@@ -30,6 +30,10 @@ a:hover{
   cursor:pointer;
 }
 
+.btn:focus, .btn:active{
+  box-shadow: 0 0 5px var(--lightGrey) !important;
+}
+
 /* container */
 .cont{
   min-height:100vh;
@@ -37,6 +41,7 @@ a:hover{
   flex-direction: column;
 }
 
+/* breadcrumbs */
 .breadcrumbs, .breadcrumbs a{
   font-size:0.95rem;
   color:var(--darkPink);
@@ -89,10 +94,12 @@ a:hover{
 
 .top{
   border-radius: 0.25rem 0.25rem 0 0 !important;
+  border-bottom:0;
 }
 
 .middle{
-  border-radius: none !important;
+  border-radius: 0 !important;
+  border-bottom:0;
 }
 
 .bottom{
@@ -112,10 +119,6 @@ a:hover{
   width:55px;
   border-radius:0 0.25rem 0.25rem 0;
   color:var(--grey)
-}
-
-.add-button:focus, .add-button:active{
-  box-shadow:none;
 }
 
 /* all lists page */
