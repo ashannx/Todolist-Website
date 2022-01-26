@@ -20,7 +20,7 @@
           <input type="hidden" name="listDBId" value="<%= list._id %>"></input>
 
           <div class="d-flex align-items-center mb-2">
-            <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= i %>" id="item-<%= i %>">
+            <input class="form-check-input" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= list.items[i]._id %>" id="item-<%= i %>">
             <label for="item-<%= i %>" class="item-label"><%=  list.items[i].itemName  %></label>
           </div>
 

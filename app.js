@@ -46,13 +46,6 @@ async function main() {
     useUnifiedTopology: true
   });
 
-  let userNameEntered = ""
-  let userInfo
-  let currentUserId = ""
-  let currentListItems = []
-  let currentListID = ""
-  let userLists = []
-
   // schema
   const itemSchema = new mongoose.Schema({
     itemName: String
@@ -218,7 +211,7 @@ async function main() {
     if(req.isAuthenticated()){
       User.findOne({_id:req.user._id}, (err,user)=>{
         const currentList = user.lists.id(req.body.listDBId)
-        currentList.items.splice(req.params.itemArrayId,1)
+        currentList.items.pull(req.body.checkbox)
         user.save()
       })
       res.redirect("/lists/" + req.params.list)
