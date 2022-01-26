@@ -91,6 +91,10 @@ a:hover{
   border-radius: 0.25rem 0.25rem 0 0 !important;
 }
 
+.middle{
+  border-radius: none !important;
+}
+
 .bottom{
   border-radius: 0 0 0.25rem 0.25rem !important;
 }
