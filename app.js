@@ -4,7 +4,7 @@ const bodyParser = require("body-parser")
 const mongoose = require('mongoose')
 const ejs = require("ejs")
 const _ = require('lodash')
-const ObjectId = require('bson-objectid')
+const ObjectId = require('bson-objectid') //TODO: get rid of this
 const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
@@ -73,7 +73,7 @@ async function main() {
     .get((req,res)=>{
       //show a home page with a gif of the lists or something? <-- make this an about page
 
-      if(req.isAuthenticated()){ //make this into it's own route, you don't want logout when they hit logo
+      if(req.isAuthenticated()){
         res.redirect("/lists")
       } else {
         res.render("username.ejs",{
@@ -194,6 +194,7 @@ async function main() {
         res.redirect("/")
       }
     })
+    // add a list
     .post((req,res)=>{
       if(req.isAuthenticated()){
         User.findOne({_id:req.user._id}, (err,user)=>{
